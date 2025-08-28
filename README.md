@@ -47,7 +47,7 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 ---
 
-### 5. Typical Operation
+### 4. Typical Operation
 
 - On boot, system initializes peripherals and sets initial time/date if required.
 - Main loop constantly checks current RTC time.
@@ -57,7 +57,7 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 ---
 
-### 6. File Structure
+### 5. File Structure
 
 ```
 |-- Event_Board_Main.c      # Main logic and loop
@@ -77,7 +77,7 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 ---
 
-## 7. How to Use
+## 6. How to Use
 
 1. **Compile code** and flash to LPC2148.
 2. **Connect hardware**: LCD, keypad, LM35, LEDs as per your schematic.
@@ -87,7 +87,7 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 ---
 
-## 8. Customization and Extension Ideas
+## 7. Customization and Extension Ideas
 
 - Change scheduled messages in `Event_Board_Main.c`
 - Change admin password in `settings.c`
@@ -95,7 +95,7 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 ---
 
-## 9. Flowchart Image for README (Optional)
+## 8. Flowchart Image for README (Optional)
 
 > ![Event Board Project Flowchart](./doc/event_board_flowchart.png)
 > *(You can export the above Mermaid diagram as PNG and upload to your repo)*
