@@ -51,24 +51,21 @@ The Event Board Mini Project is a microcontroller-based real-time event display 
 
 #### Top-Level System Flow
 
-```mermaid
 flowchart TD
-    A[Start: Power On/Reset] --> B[Hardware Initialization---(LCD, Keypad, RTC, ADC, LEDs)]
+    A[Start: Power On/Reset] --> B[Hardware Initialization (LCD, Keypad, RTC, ADC, LEDs)]
     B --> C[Set Initial Time/Date/Day]
     C --> D[Configure External Interrupt]
     D --> E[Main Loop]
     
     E --> F{Scheduled Message Time?}
-    F -- Yes --> G[Display & Scroll Message---Turn ON Green LED, OFF Red LED]
-    F -- No --> H[Show Time/Date/Day---Temperature---Turn ON Red LED, OFF Green LED]
+    F -- Yes --> G[Display & Scroll Message<br>Turn ON Green LED, OFF Red LED]
+    F -- No --> H[Show Time/Date/Day<br>Temperature<br>Turn ON Red LED, OFF Green LED]
     G --> E
     H --> E
     E --> I{EINT0 Interrupt?}
-    I -- Yes --> J[Admin Settings Menu---(Password Protected)]
+    I -- Yes --> J[Admin Settings Menu<br>(Password Protected)]
     J --> E
     I -- No --> E
-```
-
 #### Admin Settings Menu Flow
 
 ```mermaid
