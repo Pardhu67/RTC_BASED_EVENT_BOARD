@@ -1,97 +1,100 @@
-## Project Overview: Event Board Mini Project
+# RTC Based Event Board
 
-### 1. Introduction
+## 1. Introduction
+The **RTC Based Event Board** is a microcontroller-based real-time event display system built around the **LPC2148 ARM7 MCU**.  
+It shows **scheduled messages**, **current time/date**, **day of the week**, and **temperature** on a 16x2 LCD.  
 
-The Event Board Mini Project is a microcontroller-based real-time event display system using the LPC2148 ARM7 MCU. The system displays scheduled messages, current time/date, day of week, and temperature on an LCD. It allows an admin to change the schedule, time, date, and enable/disable messages through a keypad and password-protected menu.
-
-### 2. Key Features
-
-- **Real-time Clock (RTC):** Displays current time and date.
-- **Scheduled Messages:** Scrolls important messages at preset times.
-- **Temperature Display:** Reads and displays temperature from an LM35 sensor.
-- **Admin Settings:** Password-protected menu to edit time, date, day, and message schedule.
-- **User Interface:** 4x4 keypad for input, 16x2 LCD for output.
-- **Interrupt Support:** External interrupt for quick access to settings.
-- **Status Indication:** Red/Green LEDs indicate normal/message mode.
+An administrator can update schedules, time, and date, or enable/disable messages using a **keypad-based password-protected menu**.  
 
 ---
 
-### 3. System Architecture
-
-#### Main Hardware Blocks
-
-- **LPC2148 Microcontroller**
-  - Controls logic, peripherals, and interfaces
-- **16x2 LCD**
-  - Displays real-time information and messages
-- **4x4 Matrix Keypad**
-  - User/admin input for changing settings
-- **LM35 Temperature Sensor**
-  - Feeds analog temperature to ADC channel
-- **RTC (built-in)**
-  - Maintains current time/date/day
-- **Status LEDs**
-  - Indicate different operation modes
-
-#### Software Modules
-
-- **main (Event_Board_Main.c):** System initialization, main loop, message scheduling, user display
-- **lcd.c / lcd.h:** LCD control and display routines
-- **kpm.c / kpm.h:** Keypad interface and input routines
-- **rtc.c / rtc.h:** RTC setup, time/date get/set, day display
-- **adc.c / adc.h:** ADC setup, temperature reading
-- **settings.c / settings.h:** Admin settings menu, password checking, time/date/message editing
-- **delay.c / delay.h:** Timing utilities for delays
-- **pin_connect_block.c / pin_connect_block.h:** Pin function configuration (PINSEL)
-- **types.h:** Custom data types for portability
+## 2. Key Features
+- ⏰ **Real-Time Clock (RTC):** Displays current time and date using LPC2148’s inbuilt RTC.  
+- 📝 **Scheduled Messages:** Scrolls user-defined messages at preset times.  
+- 🌡️ **Temperature Display:** Uses an **LM35 sensor** with ADC for real-time temperature monitoring.  
+- 🔐 **Admin Settings:** Password-protected menu for editing time, date, day, and scheduled messages.  
+- 🎛️ **User Interface:**  
+  - **4x4 Keypad** for input.  
+  - **16x2 LCD** for output.  
+- ⚡ **Interrupt Support:** External interrupt (EINT0) provides quick access to admin settings.  
+- 💡 **Status Indication:**  
+  - **Green LED** – normal display mode.  
+  - **Red LED** – message display mode.  
 
 ---
 
-### 4. Typical Operation
+## 3. System Architecture  
 
-- On boot, system initializes peripherals and sets initial time/date if required.
-- Main loop constantly checks current RTC time.
-- If a scheduled message time matches, it scrolls the message and switches LEDs.
-- Otherwise, displays time, date, day, and temperature.
-- User can press the settings key (EINT0) for admin menu, after entering correct password can edit time, date, day, and enable/disable messages.
+### 🔧 Hardware Blocks
+- **LPC2148 Microcontroller** – Core controller, manages logic and peripherals.  
+- **16x2 LCD** – Displays time/date, temperature, and messages.  
+- **4x4 Keypad** – User input for admin control.  
+- **LM35 Temperature Sensor** – Feeds analog temperature to MCU ADC.  
+- **RTC (built-in)** – Maintains accurate time and date.  
+- **Status LEDs** – Indicate operating state.  
+
+### 💻 Software Modules
+- `Event_Board_Main.c` – System initialization, main loop, message scheduling.  
+- `lcd.c/h` – LCD driver functions.  
+- `kpm.c/h` – Keypad driver functions.  
+- `rtc.c/h` – RTC setup and time/date management.  
+- `adc.c/h` – ADC interface for temperature reading.  
+- `settings.c/h` – Admin menu, password authentication, editing features.  
+- `delay.c/h` – Delay utilities.  
+- `pin_connect_block.c/h` – Pin configuration (PINSEL setup).  
+- `types.h` – Custom data types for portability.  
+- `defines.h` – Project-wide macros.  
+- `Startup.s` – MCU startup/initialization file.  
+
+---
+
+## 4. Typical Operation
+1. On boot, all peripherals initialize and RTC sets default time/date (if not already configured).  
+2. **Main loop**:  
+   - Reads RTC time continuously.  
+   - Displays date, time, day, and temperature on LCD.  
+   - At scheduled times → scrolls messages and switches LED to message mode.  
+3. User can press the **EINT0 button** → enter admin menu.  
+   - Enter correct password.  
+   - Modify time/date/day/message settings.  
+   - Enable or disable specific messages.  
 
 ---
 
-### 5. File Structure
-
-```
-|-- Event_Board_Main.c      # Main logic and loop
-|-- adc.c/h                 # ADC driver and LM35 interface
-|-- delay.c/h               # Delay routines
-|-- lcd.c/h                 # LCD driver
-|-- kpm.c/h                 # Keypad driver
-|-- rtc.c/h                 # RTC routines
-|-- settings.c/h            # Admin and settings menu
-|-- pin_connect_block.c/h   # Pin function configuration
-|-- types.h                 # Custom types
-|-- defines.h, ...          # Bitwise and project-wide macros
-|-- *.d                     # Dependency files
-|-- *.htm                   # Build logs, call graphs
-|-- Startup.s               # MCU startup file
-```
-
----
+## 5. File Structure
+```plaintext
+├── Event_Board_Main.c      # Main application logic
+├── adc.c / adc.h           # ADC + LM35 interface
+├── delay.c / delay.h       # Delay routines
+├── lcd.c / lcd.h           # LCD driver
+├── kpm.c / kpm.h           # Keypad driver
+├── rtc.c / rtc.h           # RTC driver
+├── settings.c / settings.h # Admin menu + password check
+├── pin_connect_block.c/h   # Pin setup (PINSEL)
+├── types.h                 # Custom typedefs
+├── defines.h               # Macros and constants
+├── Startup.s               # Startup code
+├── *.d                     # Build dependencies
+├── *.htm                   # Build logs/reports
 
 ## 6. How to Use
-
-1. **Compile code** and flash to LPC2148.
-2. **Connect hardware**: LCD, keypad, LM35, LEDs as per your schematic.
-3. **Watch for scrolling messages** at the set times, or real-time info otherwise.
-4. **Press EINT0 button** to enter settings, use keypad to change time/date/day/messages.
-5. **Set admin password** in code (`settings.c`).
+1. **Compile** the project and flash it to the LPC2148.  
+2. **Connect hardware**: LCD, keypad, LM35, and LEDs as per schematic.  
+3. The system will display **time, date, day, and temperature** by default.  
+4. At scheduled times → messages will scroll across the LCD.  
+5. Press **EINT0** to enter **admin mode**:  
+   - Input password.  
+   - Modify time/date/day/message settings.  
+6. Update the **admin password** inside `settings.c` (if required).  
 
 ---
 
-## 7. Customization and Extension Ideas
-
-- Change scheduled messages in `Event_Board_Main.c`
-- Change admin password in `settings.c`
-- Add buzzer or more sensors via new modules
+## 7. Customization & Extensions
+- ✏️ Modify scheduled messages in `Event_Board_Main.c`.  
+- 🔑 Change admin password in `settings.c`.  
+- 🔔 Add **buzzer alerts** or more sensors.  
+- 📺 Expand to **20x4 LCD** for longer messages.  
+- 🔌 Implement **UART communication** for PC logging.  
 
 ---
 
