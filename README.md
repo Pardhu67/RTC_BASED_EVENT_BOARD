@@ -62,7 +62,6 @@ An administrator can update schedules, time, and date, or enable/disable message
 ---
 
 ## 5. File Structure
-```plaintext
 ├── Event_Board_Main.c      # Main application logic
 ├── adc.c / adc.h           # ADC + LM35 interface
 ├── delay.c / delay.h       # Delay routines
