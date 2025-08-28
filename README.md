@@ -82,4 +82,4 @@ An administrator can update schedules, time, and date, or enable/disable message
 5.Press EINT0 to enter admin mode:
   Input password.
   Modify time/date/day/message settings.
-6.Update the admin password inside settings.c (if required).
+  6.Update the admin password inside settings.c (if required).
