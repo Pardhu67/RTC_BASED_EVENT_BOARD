@@ -62,19 +62,16 @@ An administrator can update schedules, time, and date, or enable/disable message
 ---
 
 ## 5. File Structure
-├── Event_Board_Main.c      # Main application logic
-├── adc.c / adc.h           # ADC + LM35 interface
-├── delay.c / delay.h       # Delay routines
-├── lcd.c / lcd.h           # LCD driver
-├── kpm.c / kpm.h           # Keypad driver
-├── rtc.c / rtc.h           # RTC driver
-├── settings.c / settings.h # Admin menu + password check
-├── pin_connect_block.c/h   # Pin setup (PINSEL)
-├── types.h                 # Custom typedefs
-├── defines.h               # Macros and constants
-├── Startup.s               # Startup code
-├── *.d                     # Build dependencies
-├── *.htm                   # Build logs/reports
+    ├── Event_Board_Main.c      # Main application logiC
+    ├── adc.c / adc.h           # ADC + LM35 interface
+    ├── delay.c / delay.h       # Delay routines
+    ├── lcd.c / lcd.h           # LCD driver
+    ├── kpm.c / kpm.h           # Keypad driver
+    ├── rtc.c / rtc.h           # RTC driver
+    ├── settings.c / settings.h # Admin menu + password check
+    ├── pin_connect_block.c/h   # Pin setup (PINSEL)
+    ├── types.h                 # Custom typedefs
+    ├── defines.h               # Macros and constants
 
 ---
 ## 6. How to Use
