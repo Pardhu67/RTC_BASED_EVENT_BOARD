@@ -78,25 +78,12 @@ An administrator can update schedules, time, and date, or enable/disable message
 ├── *.htm                   # Build logs/reports
 
 ---
-6. How to Use
-===========================
-
-- Compile the project and flash it to the LPC2148.
-- Connect hardware (LCD, keypad, LM35, LEDs) as per schematic.
-- System will display time, date, day, and temperature by default.
-- At scheduled times → messages scroll across LCD.
-- Press EINT0 → enter admin mode.
-- Input password.
-- Modify settings (time/date/day/messages).
-- Update admin password inside settings.c.
-
-
-===========================
- 7. Customization & Extensions
-===========================
-
-✏️  Modify scheduled messages in Event_Board_Main.c
-🔑  Change admin password in settings.c
-🔔  Add buzzer alerts or additional sensors
-📺  Expand to 20x4 LCD for longer messages
-🔌  Implement UART communication for PC logging
+## 6. How to Use
+1.Compile the project and flash it to the LPC2148.
+2.Connect hardware: LCD, keypad, LM35, and LEDs as per schematic.
+3.The system will display time, date, day, and temperature by default.
+4.At scheduled times → messages will scroll across the LCD.
+5.Press EINT0 to enter admin mode:
+  Input password.
+  Modify time/date/day/message settings.
+6.Update the admin password inside settings.c (if required).
